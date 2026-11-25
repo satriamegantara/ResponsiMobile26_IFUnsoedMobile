@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'config/app_theme.dart';
 import 'repositories/local_storage_repository.dart';
+import 'views/home_screen.dart';
 
 /// Entry point aplikasi WeatherApp.
 Future<void> main() async {
@@ -19,11 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'WeatherApp',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const Scaffold(
-        body: Center(
-          child: Text('WeatherApp Setup'),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
