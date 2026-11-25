@@ -10,7 +10,7 @@ Aplikasi cuaca berbasis Flutter yang menampilkan kondisi cuaca terkini dan praki
 | Arsitektur | MVVM (Model-View-ViewModel) |
 | State Management | `StatefulWidget` + `setState` |
 | Penyimpanan Lokal | Hive (`hive` & `hive_flutter`) |
-| Sumber Data | Open-Meteo Weather Forecast API & Geocoding API |
+| Sumber Data | Open-Meteo Weather Forecast API & Geocoding API |ketik
 
 ---
 
@@ -113,8 +113,6 @@ flutter run
 
 ## Screenshot Aplikasi
 
-> Tambahkan hasil tangkapan layar dari emulator Android ke folder `screenshots/` sebelum pengumpulan:
-
 | Home / Weather Screen | Search / Location Screen |
 |---|---|
-| ![Home Screen](screenshots/home_screen.png) | ![Search Screen](screenshots/search_screen.png) |
+| ![Home Screen](screenshots/home_screen.jpeg) | ![Search Screen](screenshots/search_screen.jpeg) |
