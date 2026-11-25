@@ -1,30 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:responsimobile/main.dart';
+import 'package:responsimobile/config/app_theme.dart';
+import 'package:responsimobile/models/location_model.dart';
+import 'package:responsimobile/models/weather_model.dart';
+import 'package:responsimobile/widgets/current_weather_card.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('CurrentWeatherCard menampilkan nama kota dan suhu',
+      (WidgetTester tester) async {
+    const location = LocationModel(
+      name: 'Purwokerto',
+      latitude: -7.4214,
+      longitude: 109.2344,
+      country: 'Indonesia',
+      admin1: 'Jawa Tengah',
+    );
+    const current = CurrentWeather(
+      temperature: 29.0,
+      relativeHumidity: 75,
+      apparentTemperature: 32.0,
+      precipitation: 0.0,
+      weatherCode: 1,
+      windSpeed: 10.0,
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.lightTheme,
+        home: const Scaffold(
+          body: CurrentWeatherCard(
+            location: location,
+            current: current,
+          ),
+        ),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Purwokerto'), findsOneWidget);
+    expect(find.text('29°C'), findsOneWidget);
+    expect(find.text('Cerah Berawan'), findsOneWidget);
   });
 }

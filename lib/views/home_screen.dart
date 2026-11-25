@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
     );
-    _viewModel.refreshFavorites();
+    _viewModel.init();
   }
 
   Future<void> _openSearch() async {
