@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'config/app_theme.dart';
+import 'repositories/local_storage_repository.dart';
+
 /// Entry point aplikasi WeatherApp.
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorageRepository.init();
   runApp(const MyApp());
 }
 
@@ -13,10 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'WeatherApp',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
-      ),
+      theme: AppTheme.lightTheme,
       home: const Scaffold(
         body: Center(
           child: Text('WeatherApp Setup'),
