@@ -31,12 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _openSearch() async {
-    final selected =
-        await Navigator.of(context).pushNamed<LocationModel>('/search');
+    final result = await Navigator.of(context).pushNamed('/search');
     if (!mounted) return;
 
-    if (selected != null) {
-      await _viewModel.loadWeather(selected);
+    if (result is LocationModel) {
+      await _viewModel.loadWeather(result);
     } else {
       _viewModel.refreshFavorites();
     }

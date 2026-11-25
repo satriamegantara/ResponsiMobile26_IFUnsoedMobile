@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:responsimobile/config/app_theme.dart';
+import 'package:responsimobile/main.dart';
 import 'package:responsimobile/models/location_model.dart';
 import 'package:responsimobile/models/weather_model.dart';
 import 'package:responsimobile/widgets/current_weather_card.dart';
@@ -40,5 +41,24 @@ void main() {
     expect(find.text('Purwokerto'), findsOneWidget);
     expect(find.text('29°C'), findsOneWidget);
     expect(find.text('Cerah Berawan'), findsOneWidget);
+  });
+
+  testWidgets('Tombol Cari Kota dan ikon kaca pembesar membuka halaman cari',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.widgetWithText(FilledButton, 'Cari Kota'));
+    await tester.pumpAndSettle();
+    expect(find.text('Ketik minimal 2 huruf nama kota untuk mulai mencari.'),
+        findsOneWidget);
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Cari kota'));
+    await tester.pumpAndSettle();
+    expect(find.text('Ketik minimal 2 huruf nama kota untuk mulai mencari.'),
+        findsOneWidget);
   });
 }
