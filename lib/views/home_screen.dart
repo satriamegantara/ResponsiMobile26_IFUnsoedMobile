@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/location_model.dart';
 import '../viewmodels/home_viewmodel.dart';
 import '../widgets/current_weather_card.dart';
 import '../widgets/daily_forecast_tile.dart';
@@ -29,10 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     _viewModel.refreshFavorites();
   }
 
-  void _openSearch() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Halaman pencarian akan segera terhubung')),
-    );
+  Future<void> _openSearch() async {
+    final selected =
+        await Navigator.of(context).pushNamed<LocationModel>('/search');
+    if (!mounted) return;
+
+    if (selected != null) {
+      await _viewModel.loadWeather(selected);
+    } else {
+      _viewModel.refreshFavorites();
+    }
   }
 
   @override

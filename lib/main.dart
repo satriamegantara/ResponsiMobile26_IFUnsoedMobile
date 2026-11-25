@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'config/app_theme.dart';
 import 'repositories/local_storage_repository.dart';
 import 'views/home_screen.dart';
+import 'views/search_screen.dart';
 
 /// Entry point aplikasi WeatherApp.
 Future<void> main() async {
@@ -20,7 +21,11 @@ class MyApp extends StatelessWidget {
       title: 'WeatherApp',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/search': (context) => const SearchScreen(),
+      },
     );
   }
 }
